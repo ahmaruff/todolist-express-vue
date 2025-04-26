@@ -1,15 +1,34 @@
 <template>
-  <div>
-    <h1 class="bg-red-500 text-5xl">Todo List</h1>
-    <div v-if="loading" >Loading...</div>
-    <div v-if="error" class="error">{{ error }}</div>
+  <div class="flex flex-col justify-start items-center w-full h-screen bg-gray-100">
+    <div class="w-full max-w-xl p-4 mt-12 bg-gray-200 rounded-2xl shadow-xs shadow-gray-400">
+      <h1 class="text-5xl text-center font-semibold pb-4">Simple Todo List</h1>
+      <div class="flex items-center space-x-2 mt-6 mb-12">
+        <input
+          type="text"
+          placeholder="Enter todo..."
+          class="flex-1 rounded-lg border border-gray-300 p-2 focus:border-slate-500 focus:ring-2 focus:ring-gray-200 outline-none"
+          v-model="inputValue"
+        />
+        <button
+          class="rounded-lg bg-slate-500 text-white px-4 py-2 hover:bg-slate-600 transition"
+          @click="handleAdd"
+        >
+          Add
+        </button>
+      </div>
+      <div v-if="loading" >Loading...</div>
+      <div v-if="error" class="error">{{ error }}</div>
   
-    <ul v-if="todos.length > 0">
-      <li v-for="todo in todos" :key="todo.id">
-        <TodoItem :todo="todo" />
-      </li>
-    </ul>
-    <p v-else>No todos available.</p> <!-- Fallback for empty list -->
+      <ul v-if="todos.length > 0">
+        <li v-for="todo in todos" :key="todo.id">
+          <TodoItem :todo="todo" />
+        </li>
+      </ul>
+      <p v-else class="text-center text-sm font-semibold p-4 text-gray-500">No todos available.</p> <!-- Fallback for empty list -->
+    </div>
+    <div class="text-center mt-6 text-slate-500">
+      &copy; Ahmad Ma'ruf - 2025
+    </div>
   </div>
 </template>
 
