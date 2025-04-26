@@ -20,7 +20,7 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
 const todoRoutes = require('./todoManagement/interface/routes/todo.routes');
-app.use('/api', todoRoutes);
+app.use('/api/todos', todoRoutes);
 
 // Error Handler
 app.use((err, req, res, next) => {
