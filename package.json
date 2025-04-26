@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:frontend": "pnpm --filter todolist-frontend dev",
     "dev:backend": "pnpm --filter todolist-backend dev",
-    "dev": "pnpm run dev:frontend & pnpm run dev:backend"
+    "dev": "concurrently \"pnpm run dev:frontend\" \"pnpm run dev:backend\""
   },
   "keywords": [],
   "author": "Ahmad Ma'ruf",
@@ -15,5 +15,8 @@
   "packageManager": "pnpm@10.4.0+sha512.6b849d0787d97f8f4e1f03a9b8ff8f038e79e153d6f11ae539ae7c435ff9e796df6a862c991502695c7f9e8fac8aeafc1ac5a8dab47e36148d183832d886dd52",
   "dependencies": {
     "todolist-express-vue": "file:"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }
