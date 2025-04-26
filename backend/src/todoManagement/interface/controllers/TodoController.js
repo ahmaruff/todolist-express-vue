@@ -41,7 +41,7 @@ class TodoController {
             const todo = await this.getSingleTodo.execute({id: req.params.id});
             res.status(200).json(responseFormatter(STATUS.SUCCESS, 200, 'Todo fetched successfully', {todo : todo}));
         } catch (error) {
-            res.status(400).json(responseFormatter(STATUS.FAIL, 400, 'Todo not found', null));
+            res.status(404).json(responseFormatter(STATUS.FAIL, 404, 'Todo not found', null));
         }
     }
 
@@ -50,7 +50,7 @@ class TodoController {
             const todo = await this.completeTodo.execute({id: req.params.id});
             res.status(200).json(responseFormatter(STATUS.SUCCESS, 200, 'Todo marked as completed', {todo : todo}));
         } catch (error) {
-            res.status(500).json(responseFormatter(STATUS.ERROR, 500, error.message, null));
+            res.status(404).json(responseFormatter(STATUS.FAIL, 404, 'Todo not found', null));
         }
     }
 
@@ -59,7 +59,7 @@ class TodoController {
             const todo = await this.deleteTodo.execute({id : req.params.id});
             res.status(200).json(responseFormatter(STATUS.SUCCESS, 200, 'Todo deleted successfully', null));
         } catch (error) {
-            res.status(500).json(responseFormatter(STATUS.ERROR, 500, error.message, null));
+            res.status(404).json(responseFormatter(STATUS.FAIL, 404, 'Todo not found', null));
         }
     }
 }
