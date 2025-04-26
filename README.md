@@ -41,13 +41,15 @@ The application allows users to create, read, update, and delete (CRUD) todo ite
 4. API documented with swagger
 
 ## API Specification
-| Method | Endpoint         | Description                | Request Body                             | Response                           |
-|--------|------------------|----------------------------|------------------------------------------|------------------------------------|
-| GET    | `/api/todos`      | Get all todos              | -                                        | `[ { id, text, done } ]`          |
-| POST   | `/api/todos`      | Add a new todo             | `{ "text": "Task description" }`         | `{ id, text, done }`              |
-| PUT    | `/api/todos/:id`  | Toggle todo done/undone    | -                                        | `{ id, text, done }`              |
-| DELETE | `/api/todos/:id`  | Delete a todo              | -                                        | `{ message: "Deleted" }`          |
-
+| Method | Endpoint         | Description                | Request Body / Query Parameters                             | Response                           |
+|--------|------------------|-----------------------------|-------------------------------------------------------------|------------------------------------|
+| GET    | `/api`            | Home route            | -                                                           | `{ app_name, description }`        |
+| GET    | `/api/todos`      | Get all todos (with filters) | **Query Parameters** (optional): <br> - `start_date` (ISO date string) <br> - `end_date` (ISO date string) <br> - `completed` (`true` or `false`) <br> - `search` (string) | `{status, code, message, data: [{ id, description, completedAt, createdAt }]}` |
+| POST   | `/api/todos`      | Create a new todo           | `{ description }`                                           | `{status, code, message, data: {todo} }` |
+| GET    | `/api/todos/{id}` | Get single todo by ID        | -                                                           | `{status, code, message, data: {todo} }` |
+| PATCH  | `/api/todos/{id}` | Mark a todo as completed    | -                                                           | `{status, code, message, data: {todo} }` |
+| DELETE | `/api/todos/{id}` | Delete a todo               | -                                                           | `{status, code, message, data: null }` |
+| GET    | `/api/docs`       | API documentation (Swagger) | -                                                           | Swagger UI page                    |
 
 ## Acceptance Criteria
 1. **AC01** : When user open the app, all current todos are fetched and displayed
