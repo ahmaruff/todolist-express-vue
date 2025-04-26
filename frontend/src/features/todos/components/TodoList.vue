@@ -21,7 +21,7 @@
   
       <ul v-if="todos.length > 0">
         <li v-for="todo in todos" :key="todo.id">
-          <TodoItem :todo="todo" />
+          <TodoItem :todo="todo" @completed="handleComplete" />
         </li>
       </ul>
       <p v-else class="text-center text-sm font-semibold p-4 text-gray-500">No todos available.</p> <!-- Fallback for empty list -->
@@ -34,24 +34,22 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import { getTodos } from '../services/todoServices';
+import { getTodos, completeTodo, Todo } from '../services/todoServices';
 import TodoItem from './TodoItem.vue';
 
 export default defineComponent({
   name: 'TodoList',
   components: {
-    TodoItem
+    TodoItem,
   },
   setup() {
-    const todos = ref([]);
+    const todos = ref<Todo[]>([]);
     const loading = ref(true);
     const error = ref<string | null>(null);
 
-    // Fetch todos when component is mounted
     onMounted(async () => {
       try {
-        const fetchedTodos = await getTodos({});
-        todos.value = fetchedTodos;
+        todos.value = await getTodos({});
       } catch (err) {
         error.value = 'Failed to load todos';
       } finally {
@@ -59,17 +57,24 @@ export default defineComponent({
       }
     });
 
+    async function handleComplete(id: string) {
+      try {
+        const updatedTodo = await completeTodo(id);
+        const index = todos.value.findIndex((todo) => todo.id === id);
+        if (index !== -1) {
+          todos.value[index] = updatedTodo; // update state UI
+        }
+      } catch (error) {
+        console.error('Failed to complete todo', error);
+      }
+    }
+
     return {
       todos,
       loading,
-      error
+      error,
+      handleComplete,
     };
-  }
+  },
 });
 </script>
-
-<style scoped>
-.error {
-  color: red;
-}
-</style>

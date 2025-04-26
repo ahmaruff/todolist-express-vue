@@ -32,10 +32,14 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ['completed'], // <- define event
   methods: {
-    toggleComplete() {
-      console.log('Toggle complete clicked for:', this.todo.id);
-      // nanti bisa panggil API patch di sini
+    async toggleComplete() {
+      try {
+        await this.$emit('completed', this.todo.id); // hanya emit ID ke parent
+      } catch (error) {
+        console.error('Emit failed', error);
+      }
     },
     formatDate(dateStr: string) {
       const date = new Date(dateStr);
