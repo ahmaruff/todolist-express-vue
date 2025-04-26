@@ -36,7 +36,7 @@ The application allows users to create, read, update, and delete (CRUD) todo ite
 
 ### Backend Requirements
 1. Built with Node.js & Express.js
-2. Codebase follow Domain Driven Development Architecture
+2. Codebase follow Domain Driven Design Architecture
 3. Data is stored in memory (simple array) - no database needed
 4. API documented with swagger
 

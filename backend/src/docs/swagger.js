@@ -6,7 +6,7 @@ const options = {
     info: {
       title: 'Todolist Management APIs',
       version: '1.0.0',
-      description: 'Simple Todo Management API using Domain Driven Development architecture',
+      description: 'Simple Todo Management API using Domain Driven Design architecture',
     },
     servers: [
       {
