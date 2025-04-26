@@ -1,0 +1,82 @@
+# Simple Todo List Web Application
+
+A simple web-based Todo List application, designed to showcase fullstack development skills using Node.js (Express) backend, Vue 3 frontend (TypeScript), and DDD backend architecture, complete with live API documentation using Swagger 
+
+The application allows users to create, read, update, and delete (CRUD) todo items.
+
+## Goals
+1. Build a clean and modular fullstack web application  
+2. Showcase separation of concerns: frontend ↔ backend communication  
+3. Apply Domain-Driven Design (DDD) pattern for backend architecture
+4. Provide API documentation using Swagger UI
+5. Make frontend cleanly typed with TypeScript and fetch for API calls 
+
+## Features
+1. View Todos - User can view all existing todo items
+2. Add Todo - User can add a new todo item with a text input 
+3. Toggle Todo - Done/Undone	User can mark a todo as done or undone
+4. Delete Todo - User can delete a specific todo item
+5. API Documentation - Developer can view API contract via Swagger UI
+
+## User Stories
+1. **US01** : As a user, I want to view all my todos, so that I can track my tasks
+2. **US02** : As a user, I want to add a new todo, so that I can add new task to do
+3. **US03** : As a user, I want to toggle a todo status, so that I can mark tasks as complete or incomplete
+4. **US04** : As a user, I want to delete a todo, so that I can remove tasks that are no longer needed
+
+## Requirements
+### Frontend Requirements
+1. Built with Vue 3 (Composition API)
+2. Written in Typescript
+3. Use fetch API for backend communication (no axios)
+4. Display list of all todos
+5. Form to add new todo
+6. Button to toggle todo status (done/undone)
+7. Button to delete todo
+
+### Backend Requirements
+1. Built with Node.js & Express.js
+2. Codebase follow Domain Driven Development Architecture
+3. Data is stored in memory (simple array) - no database needed
+4. API documented with swagger
+
+## API Specification
+| Method | Endpoint         | Description                | Request Body                             | Response                           |
+|--------|------------------|----------------------------|------------------------------------------|------------------------------------|
+| GET    | `/api/todos`      | Get all todos              | -                                        | `[ { id, text, done } ]`          |
+| POST   | `/api/todos`      | Add a new todo             | `{ "text": "Task description" }`         | `{ id, text, done }`              |
+| PUT    | `/api/todos/:id`  | Toggle todo done/undone    | -                                        | `{ id, text, done }`              |
+| DELETE | `/api/todos/:id`  | Delete a todo              | -                                        | `{ message: "Deleted" }`          |
+
+
+## Acceptance Criteria
+1. **AC01** : When user open the app, all current todos are fetched and displayed
+2. **AC02** : When user adds a todo, it appear immediately in the list without refreshing
+3. **AC03** : When user toggles a todo, its status changes and updates visually
+4. **AC04** : When user deletes a todo, it is immediately removed from the list
+5. **AC05** : API documentation is accessible at `/api-docs` and lists all endpoints with example requests and responses
+
+## Non Functional Requirements
+1. Code quality: clean, modular, DDD-compliant
+2. Performance: Fast API responses (under 100ms simulated)
+3. Documentation: Swagger docs generated from code comments
+4. UX: Minimal, clean, responsive UI (no heavy styling needed)
+5. Scalability: Backend architecture should allow easy replacement of memory storage with database later
+
+## Tech Stack
+1. Vue 3 + Typescript
+2. Vite
+3. Node.js + Express.js (Javascript)
+4. Swagger
+
+## Notes:
+1. Since the data is stored in-memory, all data will be lost if the server is restarted (this is expected).
+2. In a real project, the repository can be easily switched to PostgreSQL/MongoDB by only modifying the Infrastructure Layer, while the Domain Layer remains clean and unaffected
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## Copyright
+
+© [Ahmad Ma'ruf](mailto:ahmadmaruf2701@gmail.com) - 2025
