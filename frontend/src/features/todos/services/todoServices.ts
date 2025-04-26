@@ -24,27 +24,27 @@ export async function getTodos(filters: FilterParams = {}): Promise<Todo[]> {
     if (filters.end_date) queryParams.append('end_date', filters.end_date);
 
     const url = `/todos?${queryParams.toString()}`;
-    const res = await http<{data: Todo[]}>(url, {
+    const res = await http<{data: {todos: Todo[]}}>(url, {
         method: 'GET'
     });
 
-    return res.data;
+    return res.data.todos;
 }
 
 export async function getTodo(id: string): Promise<Todo> {
-    const res = await http<{data: Todo}>(`/todos/${id}`, {
+    const res = await http<{data: {todo: Todo}}>(`/todos/${id}`, {
         method: 'GET'
     });
 
-    return res.data;
+    return res.data.todo;
 }
 
 export async function completeTodo(id: string): Promise<Todo> {
-    const res = await http<{data: Todo}>(`/todos/${id}/complete`, {
+    const res = await http<{data: {todo: Todo}}>(`/todos/${id}/complete`, {
         method: 'PATCH'
     });
 
-    return res.data;
+    return res.data.todo;
 }
 
 export async function deleteTodo(id: string): Promise<null> {
