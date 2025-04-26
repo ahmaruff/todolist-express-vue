@@ -1,7 +1,9 @@
-const { randomUUID } = require('crypto')
+const { randomUUID } = require('crypto');
 
 class TodoId {
     constructor(value) {
         this.value = value || randomUUID();
     }
 }
+
+module.exports = TodoId
