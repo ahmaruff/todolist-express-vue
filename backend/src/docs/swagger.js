@@ -4,9 +4,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Todo Management API',
+      title: 'Todolist Management APIs',
       version: '1.0.0',
-      description: 'Simple Todo Management API using DDD architecture',
+      description: 'Simple Todo Management API using Domain Driven Development architecture',
     },
     servers: [
       {
