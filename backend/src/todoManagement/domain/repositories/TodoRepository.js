@@ -13,6 +13,10 @@ class TodoRepository {
     async update(todo) {
         throw new Error('Method not implemented.');
     }
+
+    async delete(todo) {
+        throw new Error('Method not implemented.');
+    }
 }
   
 module.exports = TodoRepository;
