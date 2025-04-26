@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+const TodoInMemoryRepository = require('../../infrastructure/TodoInMemoryRepository');
 const TodoController = require('../controllers/TodoController');
-const todoController = new TodoController();
+
+// Instantiate the TodoRepository
+const todoInMemoryRepository = new TodoInMemoryRepository();
+const todoController = new TodoController(todoInMemoryRepository);
 
 /**
  * @swagger
