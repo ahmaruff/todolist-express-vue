@@ -29,7 +29,14 @@ class TodoController {
 
     async getAll(req, res) {
         try {
-            const todos = await this.getTodos.execute();
+            const filters = {
+                search: req.query.search,
+                completed: req.query.completed,
+                start_date: req.query.start_date,
+                end_date: req.query.end_date
+            };
+
+            const todos = await this.getTodos.execute(filters);
             res.status(200).json(responseFormatter(STATUS.SUCCESS, 200, 'Todos fetched successfully', {todos : todos}));
         } catch (error) {
             res.status(500).json(responseFormatter(STATUS.ERROR, 500, error.message, null));
