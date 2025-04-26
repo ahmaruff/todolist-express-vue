@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Todo List</h1>
-    <div v-if="loading">Loading...</div>
+    <h1 class="bg-red-500 text-5xl">Todo List</h1>
+    <div v-if="loading" >Loading...</div>
     <div v-if="error" class="error">{{ error }}</div>
   
     <ul v-if="todos.length > 0">
