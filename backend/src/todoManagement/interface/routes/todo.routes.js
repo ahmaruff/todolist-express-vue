@@ -15,9 +15,33 @@ const todoController = new TodoController(todoInMemoryRepository);
  *     summary: Get all todos
  *     tags:
  *       - Todos
+ *     description: Retrieve all todos, with optional filters
+ *     parameters:
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Search in todo description
+ *       - in: query
+ *         name: completed
+ *         schema:
+ *           type: boolean
+ *         description: Filter by completion status (true/false)
+ *       - in: query
+ *         name: start_date
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Filter todos created after this date (YYYY-MM-DD)
+ *       - in: query
+ *         name: end_date
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Filter todos created before this date (YYYY-MM-DD)
  *     responses:
  *       200:
- *         description: List of all todos
+ *         description: A list of todos
  */
 router.get('/', (req, res) => todoController.getAll(req, res));
 
