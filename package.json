@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:frontend": "pnpm --filter frontend dev",
-    "dev:backend": "pnpm --filter backend dev",
+    "dev:frontend": "pnpm --filter todolist-frontend dev",
+    "dev:backend": "pnpm --filter todolist-backend dev",
     "dev": "pnpm run dev:frontend & pnpm run dev:backend"
   },
   "keywords": [],
