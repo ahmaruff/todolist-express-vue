@@ -15,7 +15,7 @@ const todoController = new TodoController();
  *       200:
  *         description: List of all todos
  */
-router.get('/todos', (req, res) => todoController.getAll(req, res));
+router.get('/', (req, res) => todoController.getAll(req, res));
 
 /**
  * @swagger
@@ -42,7 +42,7 @@ router.get('/todos', (req, res) => todoController.getAll(req, res));
  *       400:
  *         description: Bad Request
  */
-router.post('/todos', (req, res) => todoController.create(req, res));
+router.post('/', (req, res) => todoController.create(req, res));
 
 /**
  * @swagger
@@ -64,7 +64,7 @@ router.post('/todos', (req, res) => todoController.create(req, res));
  *       404:
  *         description: Todo not found
  */
-router.get('/todos/:id', (req, res) => todoController.getSingle(req, res));
+router.get('/:id', (req, res) => todoController.getSingle(req, res));
 
 /**
  * @swagger
@@ -86,7 +86,7 @@ router.get('/todos/:id', (req, res) => todoController.getSingle(req, res));
  *       404:
  *         description: Todo not found
  */
-router.patch('/todos/:id/complete', (req, res) => todoController.complete(req, res));
+router.patch('/:id/complete', (req, res) => todoController.complete(req, res));
 
 /**
  * @swagger
@@ -108,6 +108,6 @@ router.patch('/todos/:id/complete', (req, res) => todoController.complete(req, r
  *       404:
  *         description: Todo not found
  */
-router.delete('/todos/:id', (req, res) => todoController.delete(req, res));
+router.delete('/:id', (req, res) => todoController.delete(req, res));
 
 module.exports = router;
