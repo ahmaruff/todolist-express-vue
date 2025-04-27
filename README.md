@@ -1,6 +1,6 @@
 # Simple Todo List Web Application
 
-A simple web-based Todo List application, designed to showcase fullstack development skills using Node.js (Express) backend, Vue 3 frontend (TypeScript), and DDD backend architecture, complete with live API documentation using Swagger 
+A simple web-based Todo List application, designed to showcase fullstack development skills using Node.js (Express) backend, Vue 3 frontend (TypeScript), and Domain Driven Design architecture, complete with live API documentation using Swagger 
 
 The application allows users to create, read, update, and delete (CRUD) todo items.
 
@@ -40,6 +40,74 @@ The application allows users to create, read, update, and delete (CRUD) todo ite
 3. Data is stored in memory (simple array) - no database needed
 4. API documented with swagger
 
+## Installation and Setup
+### Development Environment
+#### Prerequisites
+- Node.js (v20 or higher)
+- pnpm (v10 or higher)
+
+#### Initial Setup
+1. Clone the repository
+   ```bash
+   git clone https://github.com/ahmaruff/todolist-express-vue
+   cd todolist-express-vue
+   ```
+
+2. Install all dependencies at once from the root directory
+   ```bash
+   # Install both backend and frontend dependencies
+   pnpm install
+   ```
+
+3. Create a `.env` file in the backend directory with the following content:
+   ```
+   PORT=3000
+   NODE_ENV=development
+   SERVE_FRONTEND=false
+   CORS_ALLOWED_ORIGINS=http://localhost:5173
+   ```
+
+#### Running in Development Mode
+All the following commands should be run from the root directory of the project:
+
+1. Start the backend server in development mode
+   ```bash
+   pnpm run dev:backend
+   ```
+   The API will be available at http://localhost:3000/api
+
+2. In a new terminal, start the frontend development server
+   ```bash
+   pnpm run dev:frontend
+   ```
+   The frontend will be available at http://localhost:5173
+
+### Production Environment
+
+#### Build and Run for Production
+All commands should be run from the root directory of the project:
+
+1. Build the frontend
+   ```bash
+   pnpm run build:frontend
+   ```
+   This will create a `dist` folder in the frontend directory.
+
+2. Configure the backend for production
+   Create or update the `.env` file in the backend directory with:
+   ```
+   PORT=3000
+   NODE_ENV=production
+   SERVE_FRONTEND=true
+   ```
+
+3. Start the production server
+   ```bash
+   pnpm run start:full
+   ```
+
+The application will be available at http://localhost:3000 with both the API and frontend served from the same server.
+
 ## API Specification
 | Method | Endpoint         | Description                | Request Body / Query Parameters                             | Response                           |
 |--------|------------------|-----------------------------|-------------------------------------------------------------|------------------------------------|
@@ -74,6 +142,12 @@ The application allows users to create, read, update, and delete (CRUD) todo ite
 ## Notes:
 1. Since the data is stored in-memory, all data will be lost if the server is restarted (this is expected).
 2. In a real project, the repository can be easily switched to PostgreSQL/MongoDB by only modifying the Infrastructure Layer, while the Domain Layer remains clean and unaffected
+3. When deploying to production with `SERVE_FRONTEND=true`, make sure the frontend is built and the `dist` folder exists in the correct location.
+4. For SPA routing to work correctly, the backend uses a regex pattern to serve the frontend for all non-API routes.
+
+## Troubleshooting
+- If you encounter 404 errors when accessing frontend routes, make sure your server is configured to handle SPA routing correctly using the regex pattern approach.
+- If API requests fail with CORS errors during development, check that your `CORS_ALLOWED_ORIGINS` environment variable includes your frontend development server URL.
 
 ## License
 
