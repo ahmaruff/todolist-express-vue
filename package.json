@@ -9,7 +9,10 @@
     "dev:backend": "pnpm --filter todolist-backend dev",
     "dev": "concurrently \"pnpm run dev:frontend\" \"pnpm run dev:backend\"",
     "start:backend": "pnpm --filter todolist-backend start",
-    "build:frontend": "pnpm --filter todolist-frontend run build"
+    "start:full": "pnpm --filter todolist-backend start:full",
+    "start:api": "pnpm --filter todolist-backend start:api",
+    "build:frontend": "pnpm --filter todolist-frontend run build",
+    "build": "pnpm run build:frontend && pnpm --filter todolist-backend run build"
   },
   "keywords": [],
   "author": "Ahmad Ma'ruf",
