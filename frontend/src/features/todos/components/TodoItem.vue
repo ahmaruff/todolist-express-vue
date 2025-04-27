@@ -11,7 +11,7 @@
     </div>
     <button
       @click="toggleComplete"
-      :disabled="todo.completedAt"
+      :disabled="!!todo.completedAt"
       class="ml-4 px-3 py-1 text-sm rounded-lg border border-indigo-900 text-indigo-900 hover:bg-indigo-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
       :class="{'hidden' : todo.completedAt}"
     >
@@ -21,8 +21,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { Todo } from '../services/todoServices';
+import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
+
+import type { Todo } from '../services/todoServices';
 
 export default defineComponent({
   name: 'TodoItem',

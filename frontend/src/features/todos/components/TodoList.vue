@@ -34,7 +34,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import { getTodos, createTodo, completeTodo, Todo } from '../services/todoServices';
+import { getTodos, createTodo, completeTodo } from '../services/todoServices';
+import type { Todo } from '../services/todoServices';
 import TodoItem from './TodoItem.vue';
 
 export default defineComponent({
