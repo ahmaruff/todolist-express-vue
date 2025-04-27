@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:frontend": "pnpm --filter todolist-frontend dev",
     "dev:backend": "pnpm --filter todolist-backend dev",
-    "dev": "concurrently \"pnpm run dev:frontend\" \"pnpm run dev:backend\""
+    "dev": "concurrently \"pnpm run dev:frontend\" \"pnpm run dev:backend\"",
+    "start:backend": "pnpm --filter todolist-backend start",
+    "start:full": "pnpm --filter todolist-backend start:full",
+    "start:api": "pnpm --filter todolist-backend start:api",
+    "build:frontend": "pnpm --filter todolist-frontend run build",
+    "build": "pnpm run build:frontend && pnpm --filter todolist-backend run build"
   },
   "keywords": [],
   "author": "Ahmad Ma'ruf",
