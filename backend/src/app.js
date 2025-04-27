@@ -29,7 +29,7 @@ app.use(cors({
 }));
 
 // === Routes ===
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     res.json({
         app_name: "Todolist",
         description: "A simple web-based Todo List application, designed to showcase fullstack development skills using Node.js",
