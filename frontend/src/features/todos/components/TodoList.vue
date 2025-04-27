@@ -21,7 +21,7 @@
   
       <ul v-if="todos.length > 0">
         <li v-for="todo in todos" :key="todo.id">
-          <TodoItem :todo="todo" @completed="handleComplete" />
+          <TodoItem :todo="todo" @completed="handleComplete(todo.id)" />
         </li>
       </ul>
       <p v-else class="text-center text-sm font-semibold p-4 text-gray-500">No todos available.</p>
@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import { getTodos, completeTodo, Todo } from '../services/todoServices';
+import { getTodos, createTodo, completeTodo, Todo } from '../services/todoServices';
 import TodoItem from './TodoItem.vue';
 
 export default defineComponent({
@@ -43,6 +43,7 @@ export default defineComponent({
     TodoItem,
   },
   setup() {
+    const inputValue = ref<string>('');
     const todos = ref<Todo[]>([]);
     const loading = ref(true);
     const error = ref<string | null>(null);
@@ -51,12 +52,27 @@ export default defineComponent({
       try {
         loading.value = true;
         todos.value = await getTodos({});
+        loading.value = false;
       } catch (err) {
         error.value = 'Failed to load todos';
-      } finally {
         loading.value = false;
       }
     });
+
+    async function handleAdd() {
+      if (inputValue.value.trim() === '') return;
+      
+      try {
+        const todo = await createTodo(inputValue.value);
+        todos.value.push(todo);
+        inputValue.value = '';
+        loading.value = false;
+      } catch (err) {
+        console.error('Failed to create todo', err);
+        error.value = 'Failed to create todo';
+        loading.value = false;
+      }
+    }
 
     async function handleComplete(id: string) {
       try {
@@ -65,15 +81,19 @@ export default defineComponent({
         if (index !== -1) {
           todos.value[index] = updatedTodo; // update state UI
         }
-      } catch (error) {
-        console.error('Failed to complete todo', error);
+      } catch (err) {
+        console.error('Failed to complete todo', err);
+        error.value = 'Failed to create todo';
+        loading.value = false;
       }
     }
 
     return {
+      inputValue,
       todos,
       loading,
       error,
+      handleAdd,
       handleComplete,
     };
   },
