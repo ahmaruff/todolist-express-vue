@@ -16,7 +16,8 @@ app.use(express.json());
 // CORS Middleware
 const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS ? process.env.CORS_ALLOWED_ORIGINS.split(',') : ['http://localhost:5173'];
 
-console.log(allowedOrigins);
+console.log('CORS_ALLOWED_ORIGINS:', process.env.CORS_ALLOWED_ORIGINS);
+
 app.use(cors({
   origin(origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -36,10 +37,10 @@ app.get('/api', (req, res) => {
 });
 
 // Swagger Docs
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Todo Routes
-app.use('/api/todos', todoRoutes);
+app.use('/todos', todoRoutes);
 
 // === Error Handling ===
 // 404
