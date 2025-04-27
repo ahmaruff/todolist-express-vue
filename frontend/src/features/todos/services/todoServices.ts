@@ -31,6 +31,19 @@ export async function getTodos(filters: FilterParams = {}): Promise<Todo[]> {
     return res.data.todos;
 }
 
+export async function createTodo(description: string): Promise<Todo> {
+
+    const res = await http<{data: {todo: Todo}}>('/todos',{
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            description : description
+        })
+    });
+
+    return res.data.todo;
+}
+
 export async function getTodo(id: string): Promise<Todo> {
     const res = await http<{data: {todo: Todo}}>(`/todos/${id}`, {
         method: 'GET'
