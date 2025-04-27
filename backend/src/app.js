@@ -1,11 +1,28 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./docs/swagger');
+const cors = require('cors');
+
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:5173'
+];
 
 const app = express();
 
 // Middleware
 app.use(express.json());
+
+// Menggunakan CORS middleware dengan konfigurasi beberapa origin
+app.use(cors({
+    origin: function(origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+}));
 
 // Dummy Home Route
 app.get('/api', (req, res) => {
