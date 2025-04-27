@@ -17,14 +17,14 @@
         </button>
       </div>
       <div v-if="loading" class="text-center text-sm font-semibold p-4 text-gray-500">Loading...</div>
-      <div v-if="error" class="text-center text-sm font-semibold p-4 text-gray-500">{{ error }}</div>
+      <div v-if="error" class="text-center text-sm font-semibold p-4 text-red-400">{{ error }}</div>
   
       <ul v-if="todos.length > 0">
         <li v-for="todo in todos" :key="todo.id">
           <TodoItem :todo="todo" @completed="handleComplete" />
         </li>
       </ul>
-      <p v-else class="text-center text-sm font-semibold p-4 text-gray-500">No todos available.</p> Fallback for empty list
+      <p v-else class="text-center text-sm font-semibold p-4 text-gray-500">No todos available.</p>
     </div>
     <div class="text-center mt-6 text-slate-500">
       &copy; Ahmad Ma'ruf - 2025
